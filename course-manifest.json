@@ -1,0 +1,59 @@
+{
+  "title": "The Earlier Advantage",
+  "pageCount": 1000,
+  "intendedPageCount": 1000,
+  "standalone": true,
+  "modules": [
+    {
+      "number": 1,
+      "name": "Tactical Radar",
+      "lessons": "1-100"
+    },
+    {
+      "number": 2,
+      "name": "Lines, Pins & Discovery",
+      "lessons": "101-200"
+    },
+    {
+      "number": 3,
+      "name": "Combination Craft",
+      "lessons": "201-300"
+    },
+    {
+      "number": 4,
+      "name": "Tactical Technique",
+      "lessons": "301-400"
+    },
+    {
+      "number": 5,
+      "name": "Mating Nets",
+      "lessons": "401-500"
+    },
+    {
+      "number": 6,
+      "name": "Attacking the King",
+      "lessons": "501-600"
+    },
+    {
+      "number": 7,
+      "name": "Positional Judgment",
+      "lessons": "601-700"
+    },
+    {
+      "number": 8,
+      "name": "Pawn Structures",
+      "lessons": "701-800"
+    },
+    {
+      "number": 9,
+      "name": "Essential Endgames",
+      "lessons": "801-900"
+    },
+    {
+      "number": 10,
+      "name": "Practical Mastery",
+      "lessons": "901-1000"
+    }
+  ],
+  "footer": "Made by Codex (OpenAI). Not for sale — free for everyone."
+}
