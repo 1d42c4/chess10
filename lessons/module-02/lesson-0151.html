@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Chess lesson 151 of 1000: Skewers — Prevent it one move early. A clear, practical, standalone lesson from The Earlier Advantage.">
+  <meta name="theme-color" content="#161b1d">
+  <title>0151 · Skewers — Prevent it one move early | The Earlier Advantage</title>
+  <style>
+    :root { --ink:#172023; --paper:#f4efe3; --paper-2:#fffaf0; --muted:#667174; --line:#d5cdbd; --accent:#c9892b; --deep:#101719; --light-square:#e8d9bd; --dark-square:#7f9678; --shadow:0 18px 50px rgba(24,28,27,.12); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.6; }
+    button,input { font:inherit; }
+    a { color:inherit; }
+    .topline { height:7px; background:linear-gradient(90deg,var(--accent) 0 var(--progress),#d7d0c2 var(--progress) 100%); }
+    .site-header { background:var(--deep); color:#fff; padding:18px clamp(18px,4vw,56px); display:flex; gap:24px; align-items:center; justify-content:space-between; }
+    .brand { display:flex; align-items:center; gap:12px; text-decoration:none; min-width:0; }
+    .brand-mark { width:40px; height:40px; flex:0 0 auto; border:1px solid #ffffff50; display:grid; place-items:center; border-radius:11px; color:#fff3ce; font-size:25px; }
+    .brand strong { display:block; font-family:Georgia,serif; font-size:18px; letter-spacing:.01em; }
+    .brand small { display:block; color:#adbbbe; font-size:11px; letter-spacing:.13em; text-transform:uppercase; }
+    .jump { display:flex; align-items:center; gap:8px; color:#c4cdcf; font-size:13px; }
+    .jump input { width:76px; padding:8px 10px; background:#ffffff0f; color:#fff; border:1px solid #ffffff35; border-radius:8px; }
+    .jump button { padding:8px 12px; border:0; border-radius:8px; background:var(--accent); color:#fff; cursor:pointer; font-weight:750; }
+    main { width:min(1180px,calc(100% - 36px)); margin:0 auto; }
+    .hero { padding:clamp(44px,7vw,86px) 0 38px; display:grid; grid-template-columns:minmax(0,1.16fr) minmax(250px,.84fr); gap:clamp(30px,6vw,78px); align-items:end; }
+    .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.14em; font-size:12px; font-weight:850; margin:0 0 15px; }
+    h1 { font-family:Georgia,"Times New Roman",serif; font-size:clamp(38px,6vw,74px); line-height:.98; letter-spacing:-.045em; margin:0 0 22px; max-width:860px; }
+    .dek { font-size:clamp(17px,2vw,21px); color:#445054; max-width:720px; margin:0; }
+    .lesson-card { background:var(--paper-2); border:1px solid var(--line); border-top:5px solid var(--accent); border-radius:16px; padding:22px; box-shadow:var(--shadow); }
+    .lesson-card p { margin:0 0 14px; font-family:Georgia,serif; font-size:20px; line-height:1.35; }
+    .meta-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .meta-grid div { border-top:1px solid var(--line); padding-top:10px; }
+    .meta-grid small { display:block; color:var(--muted); text-transform:uppercase; letter-spacing:.09em; font-size:10px; }
+    .meta-grid strong { font-size:14px; }
+    .stage { padding:42px 0 76px; border-top:1px solid var(--line); display:grid; grid-template-columns:minmax(300px,560px) minmax(0,1fr); gap:clamp(32px,6vw,76px); align-items:start; }
+    .board-wrap { position:sticky; top:24px; }
+    .board-shell { background:#202827; padding:clamp(10px,2vw,16px); border-radius:18px; box-shadow:var(--shadow); }
+    .board { width:100%; aspect-ratio:1; display:grid; grid-template-columns:repeat(8,1fr); border:2px solid #141918; border-radius:7px; overflow:hidden; }
+    .square { position:relative; display:grid; place-items:center; aspect-ratio:1; }
+    .square.light { background:var(--light-square); }
+    .square.dark { background:var(--dark-square); }
+    .piece { font-family:"Segoe UI Symbol","Arial Unicode MS",serif; font-size:clamp(30px,6vw,58px); line-height:1; transform:translateY(-1px); filter:drop-shadow(0 2px 1px #0004); }
+    .white-piece { color:#fffdf6; text-shadow:0 0 1px #111,0 1px 2px #111; }
+    .black-piece { color:#17201f; text-shadow:0 1px 1px #ffffff50; }
+    .rank-label,.file-label { position:absolute; z-index:2; font-size:9px; font-weight:800; opacity:.7; }
+    .rank-label { top:2px; left:4px; }
+    .file-label { right:4px; bottom:1px; }
+    .light .rank-label,.light .file-label { color:#60705e; }
+    .dark .rank-label,.dark .file-label { color:#f4ead8; }
+    .board-caption { margin:12px 2px 0; color:#c1cbca; display:flex; justify-content:space-between; gap:12px; font-size:12px; }
+    .position-key { color:#fff4d2; font-weight:800; }
+    .signal-box { background:#fffaf0; border:1px solid var(--line); border-radius:14px; padding:20px 22px; margin-top:18px; }
+    .signal-box h2 { font-size:12px; text-transform:uppercase; letter-spacing:.13em; margin:0 0 9px; color:var(--muted); }
+    .signal-box ul { margin:0; padding-left:20px; }
+    .lesson-body h2 { font-family:Georgia,serif; font-size:clamp(27px,4vw,42px); line-height:1.08; margin:0 0 15px; }
+    .lesson-body h3 { margin:0 0 8px; font-size:13px; letter-spacing:.11em; text-transform:uppercase; color:var(--accent); }
+    .question { padding:26px; border-radius:16px; color:#fff; background:var(--deep); margin-bottom:24px; }
+    .question p { margin:0 0 18px; font-family:Georgia,serif; font-size:clamp(21px,3vw,29px); line-height:1.35; }
+    .reveal-button { border:1px solid #ffffff4a; background:var(--accent); color:#fff; padding:11px 16px; border-radius:9px; cursor:pointer; font-weight:800; }
+    .answer { display:none; margin-top:18px; padding-top:18px; border-top:1px solid #ffffff33; color:#eff5f2; }
+    .answer.show { display:block; animation:rise .25s ease-out; }
+    @keyframes rise { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:none; } }
+    .principle { background:#ffffff8c; border-left:5px solid var(--accent); padding:22px 24px; font-family:Georgia,serif; font-size:21px; line-height:1.45; margin:24px 0; }
+    .coach { color:#435054; font-size:17px; }
+    .steps { list-style:none; padding:0; margin:28px 0 34px; display:grid; gap:12px; }
+    .steps li { display:grid; grid-template-columns:34px 1fr; gap:12px; align-items:start; padding:13px 15px; border:1px solid var(--line); border-radius:12px; background:#fffaf0a8; }
+    .steps li span { width:28px; height:28px; border-radius:50%; display:grid; place-items:center; background:var(--accent); color:#fff; font-weight:850; font-size:13px; }
+    .steps li p { margin:1px 0 0; }
+    .warning { border:1px dashed #b86b54; background:#fff5ea; padding:18px 20px; border-radius:12px; margin:28px 0; }
+    .warning strong { color:#8e432f; }
+    .recall { padding:24px; background:color-mix(in srgb,var(--accent) 11%,#fffaf0); border:1px solid color-mix(in srgb,var(--accent) 45%,#d5cdbd); border-radius:16px; }
+    .recall p { font-size:18px; margin:0 0 14px; }
+    .recall .answer { color:var(--ink); border-color:#0000001b; }
+    .module-note { padding:28px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .module-note strong { font-family:Georgia,serif; font-size:22px; }
+    .module-note p { margin:4px 0 0; color:var(--muted); }
+    .progress-pill { flex:0 0 auto; border:1px solid var(--line); border-radius:999px; padding:8px 12px; font-size:12px; font-weight:800; }
+    .lesson-nav { display:flex; justify-content:space-between; gap:14px; padding:34px 0 56px; }
+    .nav-button { text-decoration:none; border-radius:10px; padding:13px 18px; background:var(--accent); color:#fff; font-weight:850; }
+    .nav-button.secondary { background:transparent; border:1px solid #9e978a; color:var(--ink); }
+    .nav-button.disabled { opacity:.38; cursor:not-allowed; }
+    footer { background:var(--deep); color:#d1d9d8; text-align:center; padding:30px 20px; font-size:14px; }
+    footer strong { color:#fff3ce; }
+    footer span { display:block; margin-top:4px; color:#879496; font-size:12px; }
+    @media (max-width:850px) { .hero,.stage { grid-template-columns:1fr; } .board-wrap { position:static; max-width:600px; width:100%; margin:0 auto; } .hero { align-items:start; } }
+    @media (max-width:560px) { .site-header { align-items:flex-start; } .brand small { display:none; } .jump label { display:none; } main { width:min(100% - 24px,1180px); } .hero { padding-top:34px; } .lesson-card { padding:17px; } .stage { padding-top:30px; } .lesson-nav { align-items:stretch; } .nav-button { text-align:center; flex:1; padding:12px 8px; } }
+    @media print { .site-header,.topline,.lesson-nav,.jump,.reveal-button { display:none !important; } body { background:#fff; } main { width:100%; } .hero { padding:20px 0; } .stage { grid-template-columns:42% 1fr; gap:28px; padding:20px 0; } .board-wrap { position:static; } .answer { display:block !important; } footer { color:#111; background:#fff; border-top:1px solid #bbb; } }
+  </style>
+</head>
+<body style="--progress:15.1%">
+  <div class="topline" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="../module-01/lesson-0001.html" aria-label="Go to the first lesson">
+      <span class="brand-mark">♞</span>
+      <span><strong>The Earlier Advantage</strong><small>1,000 lessons · zero shortcuts</small></span>
+    </a>
+    <form class="jump" onsubmit="return jumpToLesson(event)">
+      <label for="lesson-jump">Go to lesson</label>
+      <input id="lesson-jump" type="number" min="1" max="1000" value="151" aria-label="Lesson number">
+      <button type="submit">Go</button>
+    </form>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Lesson 0151 · Module 2: Lines, Pins &amp; Discovery</p>
+        <h1>Skewers — Prevent it one move early</h1>
+        <p class="dek">Learn the defensive version of the pattern so you recognize danger before it becomes forcing.</p>
+      </div>
+      <aside class="lesson-card" aria-label="Lesson details">
+        <p>“Read files, ranks, and diagonals as active tactical roads.”</p>
+        <div class="meta-grid">
+          <div><small>Level</small><strong>Club</strong></div>
+          <div><small>Study time</small><strong>5 minutes</strong></div>
+          <div><small>Concept unit</small><strong>11 / 20</strong></div>
+          <div><small>Side to think for</small><strong>White</strong></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="stage">
+      <div class="board-wrap">
+        <div class="board-shell">
+          <div class="board" role="grid" aria-label="Illustrative chess position, White pieces at the bottom"><div class="square light" role="gridcell" aria-label="Empty square a8"><span class="rank-label">8</span></div><div class="square dark" role="gridcell" aria-label="Empty square b8"></div><div class="square light" role="gridcell" aria-label="Empty square c8"></div><div class="square dark" role="gridcell" aria-label="Empty square d8"></div><div class="square light" role="gridcell" aria-label="Empty square e8"></div><div class="square dark" role="gridcell" aria-label="Empty square f8"></div><div class="square light" role="gridcell" aria-label="Empty square g8"></div><div class="square dark" role="gridcell" aria-label="Empty square h8"></div><div class="square dark" role="gridcell" aria-label="Empty square a7"><span class="rank-label">7</span></div><div class="square light" role="gridcell" aria-label="Empty square b7"></div><div class="square dark" role="gridcell" aria-label="Empty square c7"></div><div class="square light" role="gridcell" aria-label="Empty square d7"></div><div class="square dark" role="gridcell" aria-label="Empty square e7"></div><div class="square light" role="gridcell" aria-label="Empty square f7"></div><div class="square dark" role="gridcell" aria-label="Empty square g7"></div><div class="square light" role="gridcell" aria-label="Empty square h7"></div><div class="square light" role="gridcell" aria-label="Black queen on a6"><span class="rank-label">6</span><span class="piece black-piece" aria-hidden="true">♛</span></div><div class="square dark" role="gridcell" aria-label="Empty square b6"></div><div class="square light" role="gridcell" aria-label="Black king on c6"><span class="piece black-piece" aria-hidden="true">♚</span></div><div class="square dark" role="gridcell" aria-label="Empty square d6"></div><div class="square light" role="gridcell" aria-label="Empty square e6"></div><div class="square dark" role="gridcell" aria-label="Empty square f6"></div><div class="square light" role="gridcell" aria-label="Empty square g6"></div><div class="square dark" role="gridcell" aria-label="Empty square h6"></div><div class="square dark" role="gridcell" aria-label="Empty square a5"><span class="rank-label">5</span></div><div class="square light" role="gridcell" aria-label="Empty square b5"></div><div class="square dark" role="gridcell" aria-label="Empty square c5"></div><div class="square light" role="gridcell" aria-label="Empty square d5"></div><div class="square dark" role="gridcell" aria-label="Empty square e5"></div><div class="square light" role="gridcell" aria-label="Empty square f5"></div><div class="square dark" role="gridcell" aria-label="Empty square g5"></div><div class="square light" role="gridcell" aria-label="Empty square h5"></div><div class="square light" role="gridcell" aria-label="Empty square a4"><span class="rank-label">4</span></div><div class="square dark" role="gridcell" aria-label="Empty square b4"></div><div class="square light" role="gridcell" aria-label="Empty square c4"></div><div class="square dark" role="gridcell" aria-label="Empty square d4"></div><div class="square light" role="gridcell" aria-label="Empty square e4"></div><div class="square dark" role="gridcell" aria-label="Empty square f4"></div><div class="square light" role="gridcell" aria-label="Empty square g4"></div><div class="square dark" role="gridcell" aria-label="Empty square h4"></div><div class="square dark" role="gridcell" aria-label="Empty square a3"><span class="rank-label">3</span></div><div class="square light" role="gridcell" aria-label="Empty square b3"></div><div class="square dark" role="gridcell" aria-label="Empty square c3"></div><div class="square light" role="gridcell" aria-label="Empty square d3"></div><div class="square dark" role="gridcell" aria-label="Empty square e3"></div><div class="square light" role="gridcell" aria-label="Empty square f3"></div><div class="square dark" role="gridcell" aria-label="Empty square g3"></div><div class="square light" role="gridcell" aria-label="Empty square h3"></div><div class="square light" role="gridcell" aria-label="Empty square a2"><span class="rank-label">2</span></div><div class="square dark" role="gridcell" aria-label="Empty square b2"></div><div class="square light" role="gridcell" aria-label="Empty square c2"></div><div class="square dark" role="gridcell" aria-label="Empty square d2"></div><div class="square light" role="gridcell" aria-label="White bishop on e2"><span class="piece white-piece" aria-hidden="true">♗</span></div><div class="square dark" role="gridcell" aria-label="Empty square f2"></div><div class="square light" role="gridcell" aria-label="Empty square g2"></div><div class="square dark" role="gridcell" aria-label="Empty square h2"></div><div class="square dark" role="gridcell" aria-label="Empty square a1"><span class="rank-label">1</span><span class="file-label">a</span></div><div class="square light" role="gridcell" aria-label="Empty square b1"><span class="file-label">b</span></div><div class="square dark" role="gridcell" aria-label="Empty square c1"><span class="file-label">c</span></div><div class="square light" role="gridcell" aria-label="Empty square d1"><span class="file-label">d</span></div><div class="square dark" role="gridcell" aria-label="Empty square e1"><span class="file-label">e</span></div><div class="square light" role="gridcell" aria-label="Empty square f1"><span class="file-label">f</span></div><div class="square dark" role="gridcell" aria-label="White king on g1"><span class="file-label">g</span><span class="piece white-piece" aria-hidden="true">♔</span></div><div class="square light" role="gridcell" aria-label="Empty square h1"><span class="file-label">h</span></div></div>
+          <div class="board-caption"><span>Illustrative position · White to think</span><span class="position-key">Key: Bb5+</span></div>
+        </div>
+        <aside class="signal-box">
+          <h2>What your eyes should notice</h2>
+          <ul><li>king or queen in front</li><li>valuable piece directly behind</li><li>a forcing line attack</li></ul>
+        </aside>
+      </div>
+
+      <article class="lesson-body">
+        <div class="question">
+          <h3>Pause before revealing</h3>
+          <p>If the opponent threatened this idea against you, what would be the cheapest useful prevention?</p>
+          <button class="reveal-button" type="button" data-target="main-answer" aria-expanded="false">Reveal the teaching point</button>
+          <div class="answer" id="main-answer">Step off vulnerable alignments or answer with a countercheck or interposition.</div>
+        </div>
+
+        <h2>The idea, made simple</h2>
+        <div class="principle">A skewer attacks the valuable front piece first; when it moves, the piece behind it is exposed.</div>
+        <p class="coach">Prevention is strongest when it also improves your position. Look for king safety, development, or activity in the same move.</p>
+
+        <h3>Use this thinking sequence</h3>
+        <ol class="steps"><li><span>1</span><p>Spot king or queen in front.</p></li><li><span>2</span><p>Remove one enabling condition.</p></li><li><span>3</span><p>Prefer an improving defensive move.</p></li><li><span>4</span><p>Check that a second version of the tactic is not available.</p></li></ol>
+
+        <div class="warning"><strong>The believable mistake:</strong> Confusing a skewer with a pin: in a skewer, the front target must move.</div>
+
+        <section class="recall">
+          <h3>Two-minute recall test</h3>
+          <p>Which enabling condition is easiest to remove in this diagram?</p>
+          <button class="reveal-button" type="button" data-target="recall-answer" aria-expanded="false">Check my answer</button>
+          <div class="answer" id="recall-answer">Begin with the most visible one: king or queen in front.</div>
+        </section>
+      </article>
+    </section>
+
+    <section class="module-note">
+      <div><strong>Module 2: Lines, Pins &amp; Discovery</strong><p>Lessons 101–200 · You are on lesson 151.</p></div>
+      <span class="progress-pill">15.1% of course</span>
+    </section>
+
+    <nav class="lesson-nav" aria-label="Lesson navigation"><a class="nav-button secondary" href="lesson-0150.html" aria-label="Previous lesson">← Previous</a><a class="nav-button" href="lesson-0152.html" aria-label="Next lesson">Next lesson →</a></nav>
+  </main>
+
+  <footer><strong>Made by Codex (OpenAI).</strong> Not for sale — free for everyone.<span>Learn it, share it, and help someone see the board sooner.</span></footer>
+
+  <script>
+    document.querySelectorAll('.reveal-button').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var answer = document.getElementById(button.dataset.target);
+        var open = answer.classList.toggle('show');
+        button.setAttribute('aria-expanded', String(open));
+        button.textContent = open ? 'Hide answer' : (button.dataset.target === 'main-answer' ? 'Reveal the teaching point' : 'Check my answer');
+      });
+    });
+    function jumpToLesson(event) {
+      event.preventDefault();
+      var input = document.getElementById('lesson-jump');
+      var number = Math.max(1, Math.min(1000, Number(input.value) || 1));
+      window.location.href = '../module-' + String(Math.ceil(number / 100)).padStart(2, '0') + '/lesson-' + String(number).padStart(4, '0') + '.html';
+      return false;
+    }
+  </script>
+</body>
+</html>

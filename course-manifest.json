@@ -7,52 +7,72 @@
     {
       "number": 1,
       "name": "Tactical Radar",
-      "lessons": "1-100"
+      "lessons": "1-100",
+      "directory": "lessons/module-01",
+      "start": "lessons/module-01/lesson-0001.html"
     },
     {
       "number": 2,
       "name": "Lines, Pins & Discovery",
-      "lessons": "101-200"
+      "lessons": "101-200",
+      "directory": "lessons/module-02",
+      "start": "lessons/module-02/lesson-0101.html"
     },
     {
       "number": 3,
       "name": "Combination Craft",
-      "lessons": "201-300"
+      "lessons": "201-300",
+      "directory": "lessons/module-03",
+      "start": "lessons/module-03/lesson-0201.html"
     },
     {
       "number": 4,
       "name": "Tactical Technique",
-      "lessons": "301-400"
+      "lessons": "301-400",
+      "directory": "lessons/module-04",
+      "start": "lessons/module-04/lesson-0301.html"
     },
     {
       "number": 5,
       "name": "Mating Nets",
-      "lessons": "401-500"
+      "lessons": "401-500",
+      "directory": "lessons/module-05",
+      "start": "lessons/module-05/lesson-0401.html"
     },
     {
       "number": 6,
       "name": "Attacking the King",
-      "lessons": "501-600"
+      "lessons": "501-600",
+      "directory": "lessons/module-06",
+      "start": "lessons/module-06/lesson-0501.html"
     },
     {
       "number": 7,
       "name": "Positional Judgment",
-      "lessons": "601-700"
+      "lessons": "601-700",
+      "directory": "lessons/module-07",
+      "start": "lessons/module-07/lesson-0601.html"
     },
     {
       "number": 8,
       "name": "Pawn Structures",
-      "lessons": "701-800"
+      "lessons": "701-800",
+      "directory": "lessons/module-08",
+      "start": "lessons/module-08/lesson-0701.html"
     },
     {
       "number": 9,
       "name": "Essential Endgames",
-      "lessons": "801-900"
+      "lessons": "801-900",
+      "directory": "lessons/module-09",
+      "start": "lessons/module-09/lesson-0801.html"
     },
     {
       "number": 10,
       "name": "Practical Mastery",
-      "lessons": "901-1000"
+      "lessons": "901-1000",
+      "directory": "lessons/module-10",
+      "start": "lessons/module-10/lesson-0901.html"
     }
   ],
   "footer": "Made by Codex (OpenAI). Not for sale — free for everyone."

@@ -91,7 +91,7 @@
 <body style="--progress:0.1%">
   <div class="topline" aria-hidden="true"></div>
   <header class="site-header">
-    <a class="brand" href="lesson-0001.html" aria-label="Go to the first lesson">
+    <a class="brand" href="lessons/module-01/lesson-0001.html" aria-label="Go to the first lesson">
       <span class="brand-mark">♞</span>
       <span><strong>The Earlier Advantage</strong><small>1,000 lessons · zero shortcuts</small></span>
     </a>
@@ -163,7 +163,7 @@
       <span class="progress-pill">0.1% of course</span>
     </section>
 
-    <nav class="lesson-nav" aria-label="Lesson navigation"><span class="nav-button secondary disabled">← Previous</span><a class="nav-button" href="lesson-0002.html" aria-label="Next lesson">Next lesson →</a></nav>
+    <nav class="lesson-nav" aria-label="Lesson navigation"><span class="nav-button secondary disabled">← Previous</span><a class="nav-button" href="lessons/module-01/lesson-0002.html" aria-label="Next lesson">Next lesson →</a></nav>
   </main>
 
   <footer><strong>Made by Codex (OpenAI).</strong> Not for sale — free for everyone.<span>Learn it, share it, and help someone see the board sooner.</span></footer>
@@ -181,7 +181,7 @@
       event.preventDefault();
       var input = document.getElementById('lesson-jump');
       var number = Math.max(1, Math.min(1000, Number(input.value) || 1));
-      window.location.href = 'lesson-' + String(number).padStart(4, '0') + '.html';
+      window.location.href = 'lessons/module-' + String(Math.ceil(number / 100)).padStart(2, '0') + '/lesson-' + String(number).padStart(4, '0') + '.html';
       return false;
     }
   </script>
