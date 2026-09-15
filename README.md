@@ -1,6 +1,6 @@
 # The Earlier Advantage
 
-**Live website: [https://knightway8.github.io/chess10/](https://knightway8.github.io/chess10/)**
+**Live website: [https://1d42c4.github.io/chess10/](https://1d42c4.github.io/chess10/)**
 
 1,000 self-contained chess lessons across 10 modules, with chessboards, exercises, answer reveals, and lesson navigation.
 
@@ -17,10 +17,10 @@ This repository publishes the complete contents of the supplied `The-Earlier-Adv
 
 | Repository | Collection | GitHub Pages |
 | --- | --- | --- |
-| [chess7](https://github.com/knightway8/chess7) | Chess Combat School | [Open site](https://knightway8.github.io/chess7/) |
-| [chess8](https://github.com/knightway8/chess8) | OnePageLove Chess | [Open site](https://knightway8.github.io/chess8/) |
-| [chess9](https://github.com/knightway8/chess9) | Positional Logic | [Open site](https://knightway8.github.io/chess9/) |
-| [chess10](https://github.com/knightway8/chess10) | The Earlier Advantage | [Open site](https://knightway8.github.io/chess10/) |
+| [chess7](https://github.com/1d42c4/chess7) | Chess Combat School | [Open site](https://1d42c4.github.io/chess7/) |
+| [chess8](https://github.com/1d42c4/chess8) | OnePageLove Chess | [Open site](https://1d42c4.github.io/chess8/) |
+| [chess9](https://github.com/1d42c4/chess9) | Positional Logic | [Open site](https://1d42c4.github.io/chess9/) |
+| [chess10](https://github.com/1d42c4/chess10) | The Earlier Advantage | [Open site](https://1d42c4.github.io/chess10/) |
 
 ## Lesson folders
 
@@ -33,7 +33,7 @@ Older GitHub Pages lesson bookmarks are recognized by the custom 404 page and re
 All 1,004 original source files are included. Any existing course archives, tools, and documentation remain available. Use **Code → Download ZIP** to download this repository, or clone it with Git:
 
 ```sh
-git clone https://github.com/knightway8/chess10.git
+git clone https://github.com/1d42c4/chess10.git
 ```
 
 `SOURCE_MANIFEST.json` records every original file, its original path when moved, and its original and current uploaded SHA-256 hashes, and the deliberate publishing changes. These include the repository README, Pages settings files, and any repaired site links.
